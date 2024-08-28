@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarama Sonuçları</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Tarama Sonuçları</h1>
+
+        {% if scan_results %}
+            <div class="d-flex justify-content-center">
+                <div class="table-responsive">
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">URL</th>
+                                <th scope="col">Tarama Durumu</th>
+                                <th scope="col">Detaylar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for url, is_secure in scan_results.items() %}
+                                <tr>
+                                    <td>{{ url }}</td>
+                                    {% if is_secure %}
+                                        <td class="text-danger">Başarısız</td>
+                                        <td>Potansiyel güvenlik riski bulunmuştur.</td>
+                                    {% else %}
+                                        <td class="text-success">Başarılı</td>
+                                        <td>Herhangi bir güvenlik riski bulunmamıştır.</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">Tarama sonuçları bulunamadı.</p>
+        {% endif %}
+        <div class="text-center">
+            <a href="/" class="btn btn-primary">Ana Sayfaya Dön</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

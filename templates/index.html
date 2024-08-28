@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Güvenlik Tarama</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #loadingSpinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">URL Güvenlik Tarama</h1>
+        <form method="post" action="/" onsubmit="showLoader(event)">
+            <div class="form-group">
+                <label for="page_url">Web Sayfası URL'si:</label>
+                <input type="text" class="form-control" id="page_url" name="page_url" placeholder="URL giriniz" required>
+            </div>
+            <button type="submit" class="btn btn-primary">URL'leri Tara</button>
+        </form>
+    </div>
+
+    <!-- Loader -->
+    <div id="loadingSpinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <p>Taranıyor</p>
+        <p>Bu işlem biraz sürebilir..</p>
+    </div>
+
+    <script>
+        function showLoader(event) {
+            event.preventDefault();  // Formun varsayılan submit davranışını engelle
+            document.getElementById('loadingSpinner').style.display = 'block';
+            setTimeout(function() {
+                event.target.submit(); 
+            }, 100);  
+        }
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
