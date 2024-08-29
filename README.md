@@ -1,42 +1,46 @@
-# URL Güvenlik Tarama Uygulaması
 
-Bu proje, verilen bir web sayfasındaki tüm URL'leri tarayan ve VirusTotal API'sini kullanarak bu URL'lerin güvenli olup olmadığını kontrol eden bir Flask uygulamasıdır.
+# URL Security Scanning Application
 
-## Özellikler
+This project is a Flask application that scans all URLs on a given webpage and checks their safety using the VirusTotal API.
 
-- Web sayfasındaki tüm bağlantıları otomatik olarak çıkarır.
-- VirusTotal API'si ile her URL'nin güvenlik durumunu kontrol eder.
-- Sonuçları kullanıcıya gösterir.
+## Features
 
-## Gereksinimler
+- Automatically extracts all links from a webpage.
+- Checks the security status of each URL using the VirusTotal API.
+- Displays the results to the user.
+
+## Requirements
 
 - Docker
 
-## Kurulum
+## Installation
 
-### 1. Depoyu Klonlayın
+### 1. Clone the Repository
 
-Öncelikle, bu projeyi yerel makinenize klonlayın:
+First, clone this project to your local machine:
 
 ```bash
 git clone https://github.com/mciray/VirusTotal-Flask.git
-
 ```
-### 2. Docker ile uygulamayı build yapıp başlatın
 
-Docker imajını oluşturup konteyneri başlatmak için:
+### 2. Build and Start the Application with Docker
+
+To build the Docker image and start the container:
 
 ```bash
 docker-compose up --build
-
 ```
 
-### Uygulama ayakta
+### 3. Create `.env` File
 
-Bu adrese giderek uygulamayı görebilirsiniz.
+```bash
+VIRUSTOTAL_API_KEY = <Write your Api Key>
+```
+
+### Application Running
+
+You can view the application by navigating to:
 
 ```bash
 http://localhost:5000
-
 ```
-

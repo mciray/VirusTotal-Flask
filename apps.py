@@ -9,12 +9,14 @@ load_dotenv()
 app = Flask(__name__)
 
 VIRUSTOTAL_API_KEY = os.getenv('VIRUSTOTAL_API_KEY')
+# api keyiniz.
 
 def extract_urls(page_url):
     try:
         response = requests.get(page_url)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
+        # gelen url deki bütün href'leri bul
         urls = [a['href'] for a in soup.find_all('a', href=True)]
         return urls
     except requests.exceptions.RequestException as e:
@@ -66,12 +68,15 @@ def check_url_safety(url):
 def index():
     if request.method == 'POST':
         page_url = request.form.get('page_url')
+        # formdan gelen url içindeki bütün url leri bulması için fonksiyona yolla 
         urls = extract_urls(page_url)
+        # tarama sonuçlarını tut.
         scan_results = []
         for url in urls:
+            # tarama sonuçlarından gelen url leri kontrol et her birini virustotal e yolla.
             result = check_url_safety(url)
+            # resultu göstermek için listeye yolla ve onu en son sayfama context olarak yolla.
             scan_results.append(result)
             print(f"URL: {result['url']}, Zararlı: {result['malicious']}, Detaylar: {result['details']}")
         return render_template('success.html', scan_results=scan_results)
     return render_template('index.html')
-
